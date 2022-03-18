@@ -54,6 +54,15 @@ describe('hand-of-resources routes', () => {
     expect(res.body).toEqual(armor);
   });
 
+  it('updates an armor by id', async () => {
+    const armor = await Armor.create({ name: 'test armor', fire: 1, lightning: 4 });
+    const res = await request(app)
+      .patch(`/api/v1/armors/${armor.id}`)
+      .send({ name: 'test armor' });
+
+    expect(res.body).toEqual(armor);
+  });
 
 
+  
 });

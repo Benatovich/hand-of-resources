@@ -63,6 +63,16 @@ describe('hand-of-resources routes', () => {
     expect(res.body).toEqual(armor);
   });
 
+  it('deletes an armor by id', async () => {
+    const armor = await Armor.create({
+      name: 'test armor',
+      magic: 3,
+      holy: 5,
+    });
+    const res = await request(app)
+      .delete(`/api/v1/armors/${armor.id}`);
 
-  
+    expect(res.body).toEqual(armor);
+    expect(await Armor.getById(armor.id)).toBeNull();
+  });
 });

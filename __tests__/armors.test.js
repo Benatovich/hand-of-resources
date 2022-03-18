@@ -46,7 +46,13 @@ describe('hand-of-resources routes', () => {
     );
   });
 
+  it('gets an armor by id', async () => {
+    const armor = await Armor.create({ name: 'test armor', physical: 1, magic: 4 });
+    const res = await request(app)
+      .get(`/api/v1/armors/${armor.id}`);
 
+    expect(res.body).toEqual(armor);
+  });
 
 
 

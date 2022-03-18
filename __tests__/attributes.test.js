@@ -38,7 +38,13 @@ describe('hand-of-resources routes', () => {
     );
   });
 
+  it('gets an attribute by id', async () => {
+    const expected = await Attribute.create({ name: 'mind', stats: 'fp' });
+    const res = await request(app)
+      .get(`/api/v1/attributes/${expected.id}`);
 
-  
+    expect(res.body).toEqual(expected);
+  });
+
 
 });

@@ -28,5 +28,17 @@ describe('hand-of-resources routes', () => {
     });
   });
 
+  it('gets a list of attributes', async () => {
+    await Attribute.create({ name: 'endurance', stats: 'stamina' });
+    const res = await request(app)
+      .get('/api/v1/attributes');
+
+    expect(res.body).toEqual(
+      await Attribute.getAll()
+    );
+  });
+
+
+  
 
 });

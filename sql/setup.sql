@@ -1,12 +1,13 @@
 -- Use this file to define your SQL tables
 -- The SQL in this file will be executed when you run `npm run setup-db`
--- DROP TABLE IF EXISTS armors, attributes;
+DROP TABLE IF EXISTS armors;
 
-CREATE TABLE IF NOT EXISTS armors (
+CREATE TABLE armors (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     physical SMALLINT,
     -- considered adding vs strike/slash/pierce but i'm lazy
+    -- if I have time I'd like to try to refactor this into arrays
     magic SMALLINT,
     fire SMALLINT,
     lightning SMALLINT,
@@ -15,9 +16,9 @@ CREATE TABLE IF NOT EXISTS armors (
 
 
 
--- DROP TABLE IF EXISTS attributes;
+DROP TABLE IF EXISTS attributes;
 
-CREATE TABLE IF NOT EXISTS attributes (
+CREATE TABLE attributes (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
     stats TEXT NOT NULL

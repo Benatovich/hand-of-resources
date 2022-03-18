@@ -36,8 +36,18 @@ describe('hand-of-resources routes', () => {
     });
   });
 
+  it('gets a list of armors', async () => {
+    await Armor.create({ name: 'test armor', physical: 1, magic: 4 });
+    const res = await request(app)
+      .get('/api/v1/armors');
+
+    expect(res.body).toEqual(
+      await Armor.getAll()
+    );
+  });
 
 
 
-  
+
+
 });

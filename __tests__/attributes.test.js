@@ -55,4 +55,13 @@ describe('hand-of-resources routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('deletes an attribute by id', async () => {
+    const expected = await Attribute.create({ name: 'vigor', stats: 'hp' });
+    const res = await request(app)
+      .delete(`/api/v1/attributes/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+    expect(await Attribute.getById(expected.id)).toBeNull();
+  });
+
 });

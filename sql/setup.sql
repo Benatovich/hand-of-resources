@@ -31,9 +31,8 @@ DROP TABLE IF EXISTS bosses;
 CREATE TABLE bosses (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    resists TEXT,
-    weakness TEXT,
-    lore TEXT
+    date_defeated DATE NOT NULL DEFAULT CURRENT_DATE
+    -- enter bosses in the table as you defeat them
 );
 
 
@@ -43,8 +42,7 @@ DROP TABLE IF EXISTS spells;
 CREATE TABLE spells (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    type TEXT NOT NULL,
-    effect TEXT NOT NULL
+    usable BOOLEAN NOT NULL
 );
 
 
@@ -54,12 +52,7 @@ DROP TABLE IF EXISTS weapons;
 CREATE TABLE weapons (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    physical SMALLINT,
-    magic SMALLINT,
-    fire SMALLINT,
-    lightning SMALLINT,
-    holy SMALLINT,
-    scaling TEXT NOT NULL
+    usable BOOLEAN NOT NULL
 );
 
 -- so much more data I could add. I'm trying to keep it relatively simple here.

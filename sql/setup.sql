@@ -31,7 +31,7 @@ DROP TABLE IF EXISTS bosses;
 CREATE TABLE bosses (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name TEXT NOT NULL,
-    date_defeated DATE NOT NULL DEFAULT CURRENT_DATE
+    defeated BOOLEAN NOT NULL
     -- enter bosses in the table as you defeat them
 );
 

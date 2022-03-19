@@ -46,5 +46,13 @@ describe('hand-of-resources routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('updates an attribute by id', async () => {
+    const expected = await Attribute.create({ name: 'vigor', stats: 'hp' });
+    const res = await request(app)
+      .patch(`/api/v1/attributes/${expected.id}`)
+      .send({ name: 'vigor' });
+
+    expect(res.body).toEqual(expected);
+  });
 
 });

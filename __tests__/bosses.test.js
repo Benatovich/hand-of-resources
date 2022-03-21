@@ -28,7 +28,15 @@ describe('hand-of-resources routes', () => {
     });
   });
 
+  it('gets a list of bosses', async () => {
+    await Boss.create({ name: 'Magrit', defeated: 'true' });
+    const res = await request(app)
+      .get('/api/v1/bosses');
 
+    expect(res.body).toEqual(
+      await Boss.getAll()
+    );
+  });
 
 
 

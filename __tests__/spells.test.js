@@ -54,4 +54,13 @@ describe('hand-of-resources routes', () => {
 
     expect(res.body).toEqual(expected);
   });
+
+  it('deletes a spell by id', async () => {
+    const expected = await Spell.create({ name: 'rock sling', usable: false });
+    const res = await request(app)
+      .delete(`/api/v1/spells/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+    expect(await Spell.getById(expected.id)).toBeNull();
+  });
 });

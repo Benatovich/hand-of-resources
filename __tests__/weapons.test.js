@@ -38,5 +38,11 @@ describe('hand-of-resources routes', () => {
     );
   });
 
+  it('gets a weapon by id', async () => {
+    const expected = await Weapon.create({ name: 'battleaxe', usable: true });
+    const res = await request (app)
+      .get(`/api/v1/weapons/${expected.id}`);
 
+    expect(res.body).toEqual(expected);
+  });
 });

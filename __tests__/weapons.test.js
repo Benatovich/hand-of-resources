@@ -55,4 +55,12 @@ describe('hand-of-resources routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('deletes a weapon by id', async () => {
+    const expected = await Weapon.create({ name: 'battleaxe', usable: false });
+    const res = await request(app)
+      .delete(`/api/v1/weapons/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+    expect(await Weapon.getById(expected.id)).toBeNull();
+  });
 });

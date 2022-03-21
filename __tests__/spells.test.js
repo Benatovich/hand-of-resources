@@ -38,5 +38,12 @@ describe('hand-of-resources routes', () => {
     );
   });
 
+  it('gets a spell by id', async () => {
+    const expected = await Spell.create({ name: 'fireball', usable: true });
+    const res = await request (app)
+      .get(`/api/v1/spells/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+  });
 
 });

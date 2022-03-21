@@ -29,7 +29,7 @@ describe('hand-of-resources routes', () => {
   });
 
   it('gets a list of bosses', async () => {
-    await Boss.create({ name: 'Magrit', defeated: 'true' });
+    await Boss.create({ name: 'Magrit', defeated: true });
     const res = await request(app)
       .get('/api/v1/bosses');
 
@@ -38,6 +38,12 @@ describe('hand-of-resources routes', () => {
     );
   });
 
+  it('gets a boss by id', async () => {
+    const expected = await Boss.create({ name: 'Godric', defeated: true });
+    const res = await request (app)
+      .get(`/api/v1/bosses/${expected.id}`);
 
+    expect(res.body).toEqual(expected);
+  });
 
 });

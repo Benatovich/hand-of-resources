@@ -28,4 +28,15 @@ describe('hand-of-resources routes', () => {
     });
   });
 
+  it('gets a list of spells', async () => {
+    await Spell.create({ name: 'fireball', usable: true });
+    const res = await request(app)
+      .get('/api/v1/spells');
+
+    expect(res.body).toEqual(
+      await Spell.getAll()
+    );
+  });
+
+
 });

@@ -46,4 +46,12 @@ describe('hand-of-resources routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('updates a spell by id', async () => {
+    const expected = await Spell.create({ name: 'lightning bolt', usable: false });
+    const res = await request(app)
+      .patch(`/api/v1/spells/${expected.id}`)
+      .send({ name: 'lightning bolt' });
+
+    expect(res.body).toEqual(expected);
+  });
 });

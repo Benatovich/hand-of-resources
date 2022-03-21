@@ -55,4 +55,13 @@ describe('hand-of-resources routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('deletes a boss by id', async () => {
+    const expected = await Boss.create({ name: 'Leonard', defeated: false });
+    const res = await request(app)
+      .delete(`/api/v1/bosses/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+    expect(await Boss.getById(expected.id)).toBeNull();
+  });
+
 });

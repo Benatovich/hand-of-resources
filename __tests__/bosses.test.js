@@ -46,4 +46,13 @@ describe('hand-of-resources routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('updates a boss by id', async () => {
+    const expected = await Boss.create({ name: 'Radahn', defeated: false });
+    const res = await request(app)
+      .patch(`/api/v1/bosses/${expected.id}`)
+      .send({ name: 'Radahn' });
+
+    expect(res.body).toEqual(expected);
+  });
+
 });

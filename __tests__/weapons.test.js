@@ -28,4 +28,15 @@ describe('hand-of-resources routes', () => {
     });
   });
 
+  it('gets a list of weapons', async () => {
+    await Weapon.create({ name: 'battleaxe', usable: true });
+    const res = await request(app)
+      .get('/api/v1/weapons');
+
+    expect(res.body).toEqual(
+      await Weapon.getAll()
+    );
+  });
+
+
 });

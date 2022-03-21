@@ -45,4 +45,14 @@ describe('hand-of-resources routes', () => {
 
     expect(res.body).toEqual(expected);
   });
+
+  it('updates a weapon by id', async () => {
+    const expected = await Weapon.create({ name: 'battleaxe', usable: false });
+    const res = await request(app)
+      .patch(`/api/v1/weapons/${expected.id}`)
+      .send({ name: 'battleaxe' });
+
+    expect(res.body).toEqual(expected);
+  });
+
 });
